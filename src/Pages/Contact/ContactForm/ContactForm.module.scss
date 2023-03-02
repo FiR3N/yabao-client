@@ -1,0 +1,20 @@
+.contactForm {
+  width: 100%;
+  margin-bottom: 30px;
+  input,
+  textarea {
+    margin-bottom: 15px;
+  }
+  &FirstLvl {
+    display: flex;
+    gap: 10px;
+    input {
+      width: 50%;
+    }
+  }
+  @media screen and (max-width: 48em) {
+    label {
+      font-size: 1rem;
+    }
+  }
+}

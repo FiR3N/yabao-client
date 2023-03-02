@@ -1,0 +1,11 @@
+.mainLayout {
+  width: 100%;
+  &Title {
+    margin-bottom: 33px;
+  }
+  @media screen and (max-width: 48em) {
+    &Title {
+      margin-bottom: 15px;
+    }
+  }
+}

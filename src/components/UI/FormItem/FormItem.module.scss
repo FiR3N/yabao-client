@@ -1,0 +1,44 @@
+@import "../../../assets/styles/default_variables.scss";
+
+.formItem {
+  display: flex;
+  flex-direction: column;
+  display: block;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 5px;
+  color: $color-1;
+  p {
+    font-size: 0.875rem;
+  }
+  &Error {
+    color: red;
+    input {
+      border: 1.5px solid red;
+      &:hover {
+        border: 1.5px solid red;
+        box-shadow: 1px 0px 8px red;
+      }
+    }
+  }
+  &Input {
+    width: 100%;
+    background: #f3f3f7;
+    border: 1.5px solid #d8dce1;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 187%;
+    color: #231f20;
+    transition: all 0.3s ease;
+    opacity: 0.82;
+    &:hover {
+      border: 1.5px solid #bdd5ed;
+      box-shadow: 1px 1px 8px #7ab5ef;
+    }
+    @media screen and (max-width: 48em) {
+      padding: 5px 10px;
+    }
+  }
+}

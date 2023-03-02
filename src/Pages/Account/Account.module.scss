@@ -1,0 +1,25 @@
+.account {
+  &Data {
+    display: flex;
+    justify-content: space-between;
+  }
+  &User {
+    p {
+      font-size: 1.25rem;
+    }
+    &Name {
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    &Email,
+    &Phone {
+      margin-bottom: 10px;
+    }
+  }
+
+  &Buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

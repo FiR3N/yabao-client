@@ -1,0 +1,64 @@
+.discountsInfo {
+  padding: 50px 0;
+  &Title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  &Items {
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    height: 400px;
+  }
+  &Left {
+    flex: 0 0 calc(50% - 30px);
+    border-radius: 20px;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  &Right {
+    flex: 0 0 calc(50% - 30px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  &Item {
+    border-radius: 20px;
+    flex: 1 0 calc(50% - 30px);
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  button {
+    border-radius: 20px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 48em) {
+    padding: 25px 0;
+    &Title {
+      margin-bottom: 25px;
+    }
+    &Items {
+      flex-direction: column;
+      height: auto;
+    }
+  }
+  @media screen and (max-width: 37.5em) {
+    &Items {
+      gap: 10px;
+    }
+    &Right {
+      gap: 10px;
+    }
+    &Item {
+      flex: 1 0 100%;
+    }
+    img {
+      max-height: 200px;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.productModal {
+  display: flex;
+  gap: 15px;
+  &Content {
+  }
+  &Name {
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 140%;
+  }
+  &Desc {
+    margin-bottom: 20px;
+  }
+}

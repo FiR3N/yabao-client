@@ -1,0 +1,13 @@
+.swiper {
+  &Item {
+    img {
+      width: 100%;
+      max-height: 430px;
+    }
+    @media screen and (max-width: 64em) {
+      img {
+        max-height: 300px;
+      }
+    }
+  }
+}

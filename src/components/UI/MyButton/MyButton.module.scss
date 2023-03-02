@@ -1,0 +1,15 @@
+@import "../../../assets/styles/default_variables.scss";
+.myButton {
+  display: block;
+  background: $color-3;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 175%;
+  color: #ffffff;
+  padding: 7px 25px;
+  transition: all 0.3s ease;
+  &:hover {
+    background: $color-3h;
+  }
+}

@@ -1,0 +1,165 @@
+@import "../../../assets/styles/default_variables.scss";
+.footer {
+  &Content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+  }
+  &Links {
+    width: 100%;
+    display: flex;
+    padding: 10px 0;
+    margin-bottom: 20px;
+  }
+  &Left {
+    flex: 1 1 50%;
+    width: 50%;
+    position: relative;
+    z-index: 1;
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      a {
+        width: 50%;
+        margin-bottom: 7px;
+        line-height: 175%;
+        color: $color-1;
+        opacity: 0.5;
+        transition: all 0.3s ease;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    .phoneNumber {
+      margin-bottom: 20px;
+    }
+    .street {
+      font-weight: 700;
+      font-size: 1.625rem;
+      line-height: 125%;
+      text-transform: uppercase;
+      color: $color-1;
+      margin-bottom: 7px;
+    }
+    .deliveryInfo {
+      font-weight: 700;
+      margin-bottom: 50px;
+    }
+    .ourSocials {
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+  }
+  &Right {
+    flex: 1 1 50%;
+    width: 50%;
+    position: relative;
+    z-index: 1;
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      &Title {
+        margin-top: 15px;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 100%;
+        text-transform: uppercase;
+        color: $color-1;
+        margin-bottom: 36px;
+      }
+      &Item {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 55px;
+        padding: 11px 35px;
+        border: 2px solid #e3ecf5;
+        border-radius: 13px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        background-color: #ffffff;
+        transition: all 0.3s ease;
+        color: $color-1;
+        &:hover {
+          border: 2px solid #89b7e6;
+        }
+        img {
+          max-width: 30px;
+          max-height: 30px;
+        }
+      }
+    }
+  }
+  &Info {
+    display: flex;
+    align-items: center;
+    gap: 20%;
+    padding: 10px 0;
+    position: relative;
+    z-index: 1;
+    p {
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+    .cardImages {
+      display: flex;
+      align-content: center;
+      gap: 10px;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  @media screen and (max-width: 48em) {
+    .absImage {
+      display: none;
+    }
+    &Links {
+      flex-direction: column;
+    }
+    &Left,
+    &Right {
+      width: 100%;
+      flex: 1 1 100%;
+    }
+    &Left {
+      h1 {
+        font-size: 1.5rem;
+      }
+      .street {
+        font-size: 1.25rem;
+      }
+      .deliveryInfo {
+        margin-bottom: 25px;
+      }
+    }
+    &Right {
+      .contact {
+        &Title {
+          margin-bottom: 25px;
+        }
+        &Item {
+          padding: 5px 15px;
+          img {
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+    }
+    &Info {
+      justify-content: space-between;
+    }
+  }
+  .absImage {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    opacity: 0.7;
+  }
+}

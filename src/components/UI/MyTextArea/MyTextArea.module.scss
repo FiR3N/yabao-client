@@ -1,0 +1,21 @@
+.myTextArea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  background: #f3f3f7;
+  border: 1.5px solid #e3ecf5;
+  box-shadow: 1px 1px 5px #92beea;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 187%;
+  color: #231f20;
+  transition: all 0.3s ease;
+
+  opacity: 0.82;
+  &:hover {
+    border: 1.5px solid #bdd5ed;
+    box-shadow: 1px 1px 8px #7ab5ef;
+  }
+}
