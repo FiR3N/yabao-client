@@ -33,10 +33,10 @@ const Account: FC<AccountProps> = () => {
   //   UserService.logout();
   // };
 
-  const onSubmit: SubmitHandler<IAccount> = (data) => {
-    reset();
-    UserService.updateUserById(user.id, data.name, data.surname, data.phone);
-  };
+  // const onSubmit: SubmitHandler<IAccount> = (data) => {
+  //   reset();
+  //   UserService.updateUserById(user.id, data.name, data.surname, data.phone);
+  // };
 
   const logoutHandler = () => {
     logout();
