@@ -77,12 +77,26 @@ export const checkIsAuth = () => {
   };
 };
 
-export const userUpdate = (message: string) => {
+export const userUpdate = (
+  id: number,
+  name: string,
+  surname: string,
+  phone: string
+) => {
   return async (dispatch: Dispatch<UserAction>) => {
-    dispatch({
-      type: UserActionTypes.USER_ERROR,
-      payload: message,
-    });
+    try {
+      await UserService.updateUserById(id, name, surname, phone);
+      const user = await UserService.getUserById(id);
+      dispatch({
+        type: UserActionTypes.USER_UPDATE,
+        payload: user.data,
+      });
+    } catch (e: any) {
+      dispatch({
+        type: UserActionTypes.USER_ERROR,
+        payload: e.response?.data?.message,
+      });
+    }
   };
 };
 

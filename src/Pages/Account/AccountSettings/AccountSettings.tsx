@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import FormItem from "../../../components/UI/FormItem/FormItem";
 import MainLayout from "../../../components/UI/MainLayout/MainLayout";
 import MyButton from "../../../components/UI/MyButton/MyButton";
+import { UserActions } from "../../../hooks/useActions";
 import { useTypeSelector } from "../../../hooks/useTypeSelector";
 import { IAccount } from "../../../models/validators/IAccount";
 import UserService from "../../../services/UserService";
@@ -12,7 +13,7 @@ interface AccountSettingsProps {}
 
 const AccountSettings: FC<AccountSettingsProps> = () => {
   const { user } = useTypeSelector((state) => state.userReducer);
-
+  const { userUpdate } = UserActions();
   const {
     reset,
     register,
@@ -22,7 +23,7 @@ const AccountSettings: FC<AccountSettingsProps> = () => {
 
   const onSubmit: SubmitHandler<IAccount> = (data) => {
     reset();
-    UserService.updateUserById(user.id, data.name, data.surname, data.phone);
+    userUpdate(user.id, data.name, data.surname, data.phone);
   };
 
   return (

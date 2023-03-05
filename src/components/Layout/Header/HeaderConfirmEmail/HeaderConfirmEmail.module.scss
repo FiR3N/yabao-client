@@ -1,0 +1,11 @@
+@import "../../../../assets/styles/default_variables.scss";
+.headerConfirmEmail {
+  position: relative;
+  top: -20px;
+  left: 0;
+  background: $color-3;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 15px;
+}

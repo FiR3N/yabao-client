@@ -24,6 +24,8 @@ export default function userReducer(
       return { ...state, user: action.payload, isAuth: true, error: false };
     case UserActionTypes.USER_ERROR:
       return { ...state, error: action.payload };
+    case UserActionTypes.USER_UPDATE:
+      return { ...state, user: action.payload };
     case UserActionTypes.USER_LOGOUT:
       return { ...state, user: {} as IUser, isAuth: false };
     default:

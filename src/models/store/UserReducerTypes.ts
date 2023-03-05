@@ -13,6 +13,8 @@ export enum UserActionTypes {
   USER_REG = "USER_REG",
   USER_CHECK = "USER_CHECK",
   USER_ERROR = "USER_ERROR",
+  USER_UPDATE = "USER_UPDATE",
+
   //   USER_LOADING = "USER_LOADING",
 }
 
@@ -21,7 +23,8 @@ export type UserAction =
   | UserLogoutAction
   | UserRegAction
   | UserCheckAction
-  | UserErrorAction;
+  | UserErrorAction
+  | UserUpdateAction;
 
 export interface UserLoginAction {
   type: UserActionTypes.USER_LOGIN;
@@ -41,6 +44,10 @@ export interface UserCheckAction {
 export interface UserErrorAction {
   type: UserActionTypes.USER_ERROR;
   payload: string;
+}
+export interface UserUpdateAction {
+  type: UserActionTypes.USER_UPDATE;
+  payload: IUser;
 }
 // export interface UserLoadingAction {
 //   type: UserAactionTypes.USER_LOADING;
