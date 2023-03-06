@@ -14,7 +14,7 @@ interface AuthModalProps {
 }
 
 const AuthModal: FC<AuthModalProps> = ({ setActive }) => {
-  const { login, reg, setAuthError } = UserActions();
+  const { login, reg } = UserActions();
   const {
     register,
     handleSubmit,

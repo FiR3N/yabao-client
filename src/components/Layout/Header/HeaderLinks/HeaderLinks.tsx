@@ -1,11 +1,10 @@
-import React, { FC, memo, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTypeSelector } from "../../../../hooks/useTypeSelector";
 import { IType } from "../../../../models/IType";
 import { TypeService } from "../../../../services/AllProductService";
 import AuthModal from "../../../Business/Modals/AuthModal/AuthModal";
 import MyButton from "../../../UI/MyButton/MyButton";
-import MyModal from "../../../UI/MyModal/MyModal";
 import cls from "../Header.module.scss";
 import userImg from "../../../../assets/img/user.png";
 interface HeaderLinksProps {}
@@ -58,7 +57,9 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
               Войти
             </p>
           )}
-          <MyButton>Корзина | 1</MyButton>
+          <Link to="/cart">
+            <MyButton>Корзина | 1</MyButton>
+          </Link>
         </div>
       </div>
     </>

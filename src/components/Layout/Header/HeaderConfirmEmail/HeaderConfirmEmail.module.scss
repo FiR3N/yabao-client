@@ -8,4 +8,14 @@
   color: #ffffff;
   font-weight: 600;
   padding: 15px;
+  &But {
+    font-style: italic;
+    text-decoration: underline;
+    color: rgba(#ffffff, 0.8);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover {
+      color: rgba(#ffffff, 1);
+    }
+  }
 }
