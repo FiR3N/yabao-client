@@ -23,7 +23,7 @@ export default function basketReducer(
         basket: action.payload,
         loading: false,
         error: false,
-        basketItemsCount: state.basket.length,
+        basketItemsCount: action.payload.length,
       };
     case BasketActionTypes.BASKET_LOADING:
       return { ...state, loading: true };

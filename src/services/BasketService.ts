@@ -1,11 +1,23 @@
+import { AxiosResponse } from "axios";
 import $api from "../http";
 import IBasket from "../models/IBasket";
 
 export default class BasketService {
-  static async addToBasket(basketId: number, productId: number, count: number) {
-    return $api.post("/basket-items", { basketId, productId, count });
+  static async addToBasket(
+    basketId: number,
+    productId: number,
+    count: number = 1
+  ) {
+    return $api.post<AxiosResponse<IBasket>>("/basket-items", {
+      basketId,
+      productId,
+      count,
+    });
   }
   static async getBasketItem(basketId: number) {
     return $api.get(`/basket-items/${basketId}`);
+  }
+  static async deleteBasketItem(id: number) {
+    return $api.delete(`/basket-items/${id}`);
   }
 }

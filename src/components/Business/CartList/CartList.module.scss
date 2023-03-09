@@ -1,0 +1,12 @@
+.cartList {
+  width: 100%;
+  &Empty {
+    padding: 17px 0 50px;
+    font-size: 2rem;
+    text-align: center;
+    @media screen and (max-width: 48em) {
+      font-size: 1.2rem;
+      padding: 8px 0 25px;
+    }
+  }
+}

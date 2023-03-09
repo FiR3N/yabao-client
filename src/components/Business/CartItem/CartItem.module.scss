@@ -1,0 +1,45 @@
+@import "../../../assets//styles/default_variables.scss";
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &Img {
+    width: 71px;
+    height: 71px;
+    margin-right: 25px;
+  }
+  &Text {
+    margin-right: 36px;
+    &Name {
+      font-weight: 700;
+      font-size: 1.18rem;
+      line-height: 89%;
+      color: #0e0c0d;
+      margin-bottom: 9px;
+    }
+    &Desc {
+      font-weight: 500;
+      font-size: 0.8125rem;
+      line-height: 146%;
+      color: #686466;
+    }
+  }
+  &Price {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 100%;
+    text-align: center;
+    color: #ff2e65;
+  }
+  &TrashBox {
+    cursor: pointer;
+    padding: 5px;
+    &:hover {
+      svg * {
+        transition: all 0.3s ease;
+        color: $color-3;
+        fill: $color-3;
+      }
+    }
+  }
+}

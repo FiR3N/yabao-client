@@ -13,6 +13,10 @@ export class ProductService {
     const { data } = await $api.get(`/products/type/${typeId}`);
     return data;
   }
+  static async getProductById(id: number) {
+    const { data } = await $api.get(`/products/${id}`);
+    return data;
+  }
 }
 
 export class TypeAdditionService {

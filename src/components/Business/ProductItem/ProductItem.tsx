@@ -1,4 +1,6 @@
 import React, { FC, useState } from "react";
+import { BasketActions } from "../../../hooks/useActions";
+import { useTypeSelector } from "../../../hooks/useTypeSelector";
 import { IProduct } from "../../../models/IProduct";
 import MyButton from "../../UI/MyButton/MyButton";
 import ProductModal from "../Modals/ProductModal/ProductModal";
@@ -10,6 +12,14 @@ interface ProductItemProps {
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const { user } = useTypeSelector((state) => state.userReducer);
+  const { addToBasket } = BasketActions();
+
+  const buttonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    addToBasket(user.id, product.id);
+  };
+
   return (
     <>
       {/* {isProductModalOpen && (
@@ -25,9 +35,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
               от {product.isDiscount ? product.discountedPrice : product.price}{" "}
               ₽
             </p>
-            <MyButton onClick={() => setIsProductModalOpen(true)}>
-              В корзину
-            </MyButton>
+            <MyButton onClick={buttonHandler}>В корзину</MyButton>
           </div>
         </div>
       )}

@@ -7,16 +7,27 @@ import AuthModal from "../../../Business/Modals/AuthModal/AuthModal";
 import MyButton from "../../../UI/MyButton/MyButton";
 import cls from "../Header.module.scss";
 import userImg from "../../../../assets/img/user.png";
+import { BasketActions } from "../../../../hooks/useActions";
 interface HeaderLinksProps {}
 
 const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
   const { user, isAuth } = useTypeSelector((state) => state.userReducer);
+  const { basketItemsCount } = useTypeSelector((state) => state.basketReducer);
+
+  const { getBasketItem } = BasketActions();
+
   const [types, setTypes] = useState<IType[]>([]);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     TypeService.getTypes().then((data) => setTypes(data));
   }, []);
+
+  useEffect(() => {
+    if (Object.keys(user).length !== 0) {
+      getBasketItem(user?.id);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (isLoginModalOpen) {
@@ -29,11 +40,13 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
       {isLoginModalOpen && <AuthModal setActive={setIsLoginModalOpen} />}
       <div className={cls.headerLinks}>
         <ul className={cls.types}>
-          {types.map((type) => (
-            <li key={type.name + type.id} className="type">
-              <Link to={`/${type.name}`}>{type.name}</Link>
-            </li>
-          ))}
+          {types.length
+            ? types?.map((type) => (
+                <li key={type.name + type.id} className="type">
+                  <Link to={`/${type.name}`}>{type.name}</Link>
+                </li>
+              ))
+            : ""}
           <li className="type">
             <Link to="/discounts">Акции</Link>
           </li>
@@ -58,7 +71,7 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
             </p>
           )}
           <Link to="/cart">
-            <MyButton>Корзина | 1</MyButton>
+            <MyButton>Корзина | {basketItemsCount}</MyButton>
           </Link>
         </div>
       </div>
