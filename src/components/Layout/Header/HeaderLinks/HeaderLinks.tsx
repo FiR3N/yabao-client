@@ -8,10 +8,13 @@ import MyButton from "../../../UI/MyButton/MyButton";
 import cls from "../Header.module.scss";
 import userImg from "../../../../assets/img/user.png";
 import { BasketActions } from "../../../../hooks/useActions";
+import { BeatLoader } from "react-spinners";
 interface HeaderLinksProps {}
 
 const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
-  const { user, isAuth } = useTypeSelector((state) => state.userReducer);
+  const { user, isAuth, loading } = useTypeSelector(
+    (state) => state.userReducer
+  );
   const { basketItemsCount } = useTypeSelector((state) => state.basketReducer);
 
   const { getBasketItem } = BasketActions();
@@ -34,7 +37,6 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
       document.body.classList.add("_noscroll");
     } else document.body.classList.remove("_noscroll");
   }, [isLoginModalOpen]);
-
   return (
     <>
       {isLoginModalOpen && <AuthModal setActive={setIsLoginModalOpen} />}
@@ -55,7 +57,16 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
           </li>
         </ul>
         <div className={cls.buttons}>
-          {isAuth ? (
+          {loading ? (
+            <BeatLoader
+              className={cls.buttonsLoader}
+              color={"#ff2e65"}
+              loading={loading}
+              size={30}
+              aria-label="Loader spinner"
+              data-testid="loader"
+            />
+          ) : isAuth ? (
             <Link to="/account" className={cls.userBlock}>
               <img src={userImg} alt="userImg" />
               <p className={cls.userBlockName}>

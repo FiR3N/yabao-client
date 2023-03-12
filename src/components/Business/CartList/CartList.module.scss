@@ -1,5 +1,8 @@
 .cartList {
   width: 100%;
+  &Spinner {
+    margin: 0 auto;
+  }
   &Empty {
     padding: 17px 0 50px;
     font-size: 2rem;
@@ -7,6 +10,35 @@
     @media screen and (max-width: 48em) {
       font-size: 1.2rem;
       padding: 8px 0 25px;
+    }
+  }
+  &Ordering {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &Promo {
+      h3 {
+        margin-bottom: 20px;
+      }
+      input {
+        margin-bottom: 10px;
+      }
+      flex: 0 1 50%;
+    }
+    &Total {
+    }
+  }
+  .totalPrice {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 71%;
+    color: #0e0c0d;
+    span {
+      margin-left: 9px;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 100%;
+      color: #ff2e65;
     }
   }
 }

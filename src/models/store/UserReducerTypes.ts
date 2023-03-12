@@ -5,6 +5,7 @@ export interface UserState {
   user: IUser;
   isAuth: boolean;
   error: string | boolean;
+  loading: boolean;
 }
 
 export enum UserActionTypes {
@@ -14,8 +15,7 @@ export enum UserActionTypes {
   USER_CHECK = "USER_CHECK",
   USER_ERROR = "USER_ERROR",
   USER_UPDATE = "USER_UPDATE",
-
-  //   USER_LOADING = "USER_LOADING",
+  USER_LOADING = "USER_LOADING",
 }
 
 export type UserAction =
@@ -24,7 +24,8 @@ export type UserAction =
   | UserRegAction
   | UserCheckAction
   | UserErrorAction
-  | UserUpdateAction;
+  | UserUpdateAction
+  | UserLoadingAction;
 
 export interface UserLoginAction {
   type: UserActionTypes.USER_LOGIN;
@@ -49,6 +50,6 @@ export interface UserUpdateAction {
   type: UserActionTypes.USER_UPDATE;
   payload: IUser;
 }
-// export interface UserLoadingAction {
-//   type: UserAactionTypes.USER_LOADING;
-// }
+export interface UserLoadingAction {
+  type: UserActionTypes.USER_LOADING;
+}

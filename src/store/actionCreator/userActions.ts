@@ -60,6 +60,9 @@ export const reg = (
 export const checkIsAuth = () => {
   return async (dispatch: Dispatch<UserAction>) => {
     try {
+      dispatch({
+        type: UserActionTypes.USER_LOADING,
+      });
       const response = await UserService.refresh();
       const user = await UserService.getUserById(response.data.user.id);
       localStorage.setItem("token", response.data.accessToken);

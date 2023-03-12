@@ -37,14 +37,15 @@ const TypeList: FC<TypeListProps> = () => {
 
   return (
     <div className={cls.typesOfProducts}>
-      {types.map((type) => {
-        return (
-          <div key={type.name} id={type.name} className={cls.typeOfproducts}>
-            <h2 className={cls.title}>{type.name}</h2>
-            <ProductList type={type} />
-          </div>
-        );
-      })}
+      {types.length &&
+        types.map((type) => {
+          return (
+            <div key={type.name} id={type.name} className={cls.typeOfproducts}>
+              <h2 className={cls.title}>{type.name}</h2>
+              <ProductList type={type} />
+            </div>
+          );
+        })}
     </div>
   );
 };

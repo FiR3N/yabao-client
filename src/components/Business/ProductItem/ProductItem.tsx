@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { BasketActions } from "../../../hooks/useActions";
 import { useTypeSelector } from "../../../hooks/useTypeSelector";
 import { IProduct } from "../../../models/IProduct";
@@ -12,13 +12,29 @@ interface ProductItemProps {
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [isProductInBasket, setIsProductInBasket] = useState(false);
+
   const { user } = useTypeSelector((state) => state.userReducer);
-  const { addToBasket } = BasketActions();
+  const { basket } = useTypeSelector((state) => state.basketReducer);
+
+  const { addToBasket, deleteBasketItemByProductId } = BasketActions();
 
   const buttonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    addToBasket(user.id, product.id);
+    if (isProductInBasket) {
+      deleteBasketItemByProductId(product.id, user.id);
+      setIsProductInBasket(false);
+    } else {
+      e.preventDefault();
+      addToBasket(user.id, product.id);
+      setIsProductInBasket(true);
+    }
   };
+
+  useEffect(() => {
+    if (basket.some((item) => item.productId === product.id)) {
+      setIsProductInBasket((prev) => (prev = true));
+    }
+  }, [basket]);
 
   return (
     <>
@@ -35,7 +51,11 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
               от {product.isDiscount ? product.discountedPrice : product.price}{" "}
               ₽
             </p>
-            <MyButton onClick={buttonHandler}>В корзину</MyButton>
+            {isProductInBasket ? (
+              <MyButton onClick={buttonHandler}>В корзине ✓</MyButton>
+            ) : (
+              <MyButton onClick={buttonHandler}>В корзину</MyButton>
+            )}
           </div>
         </div>
       )}

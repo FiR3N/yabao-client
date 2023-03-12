@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import cls from "./MainSwiper.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";

@@ -8,6 +8,7 @@ import {
 const initialState: BasketState = {
   basket: [],
   basketItemsCount: 0,
+  totalPrice: 0,
   loading: false,
   error: false,
 };
@@ -21,9 +22,9 @@ export default function basketReducer(
       return {
         ...state,
         basket: action.payload,
+        basketItemsCount: action.payload.length,
         loading: false,
         error: false,
-        basketItemsCount: action.payload.length,
       };
     case BasketActionTypes.BASKET_LOADING:
       return { ...state, loading: true };
@@ -43,6 +44,16 @@ export default function basketReducer(
       };
     case BasketActionTypes.DELETE_ALL_BASKET_ITEM:
       return { ...state, basket: [], basketItemsCount: 0 };
+    case BasketActionTypes.UPDATE_BASKET_ITEM:
+      const { id, count } = action.payload;
+      const updatedItems = state.basket.map((item) => {
+        if (item.id == id) {
+          item.count = count;
+        }
+        return item;
+      });
+      return { ...state, basket: updatedItems };
+
     default:
       return state;
   }

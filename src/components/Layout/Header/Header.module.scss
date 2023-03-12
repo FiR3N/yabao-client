@@ -189,6 +189,9 @@
       display: flex;
       align-items: center;
       gap: 20px;
+      &Loader {
+        font-size: 1rem;
+      }
       &Login {
         cursor: pointer;
       }

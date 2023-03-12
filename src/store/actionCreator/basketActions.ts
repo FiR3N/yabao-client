@@ -44,12 +44,52 @@ export const deleteBasketItem = (id: number) => {
   };
 };
 
+export const deleteBasketItemByProductId = (
+  productId: number,
+  basketId: number
+) => {
+  return async (dispatch: Dispatch<BasketAction>) => {
+    try {
+      const item = await BasketService.deleteBasketItemByProductId(
+        productId,
+        basketId
+      );
+      dispatch({
+        type: BasketActionTypes.DELETE_BASKET_ITEM,
+        payload: item.data.id,
+      });
+    } catch (e: any) {
+      dispatch({
+        type: BasketActionTypes.BASKET_ERROR,
+        payload: e.response?.data?.message,
+      });
+    }
+  };
+};
+
 export const addToBasket = (basketId: number, productId: number) => {
   return async (dispatch: Dispatch<BasketAction>) => {
     try {
       const item = await BasketService.addToBasket(basketId, productId);
       dispatch({
         type: BasketActionTypes.ADD_ITEM_TO_BASKET,
+        payload: item as unknown as IBasket,
+      });
+    } catch (e: any) {
+      dispatch({
+        type: BasketActionTypes.BASKET_ERROR,
+        payload: e.response?.data?.message,
+      });
+    }
+  };
+};
+
+export const changeCountBasketItem = (id: number, count: number) => {
+  return async (dispatch: Dispatch<BasketAction>) => {
+    try {
+      const item = await BasketService.updateCountBasketItem(id, count);
+      dispatch({
+        type: BasketActionTypes.UPDATE_BASKET_ITEM,
         payload: item as unknown as IBasket,
       });
     } catch (e: any) {

@@ -13,38 +13,43 @@ const DiscountsInfo: FC<DiscountsInfoProps> = () => {
     DiscountService.getDiscounts(5).then((data) => setDiscounts(data));
   }, []);
   return (
-    <div className={cls.discountsInfo}>
-      <h2 className={cls.discountsInfoTitle}>
-        Наши <span className="pink-text">акции</span>
-      </h2>
-      <div className={cls.discountsInfoItems}>
-        <div className={cls.discountsInfoLeft}>
-          <img
-            src={import.meta.env.VITE_API_URL + "/" + discounts[0]?.img}
-            alt={discounts[0]?.name}
-          />
+    <>
+      {Object.keys(discounts).length > 0 && (
+        <div className={cls.discountsInfo}>
+          <h2 className={cls.discountsInfoTitle}>
+            Наши <span className="pink-text">акции</span>
+          </h2>
+          <div className={cls.discountsInfoItems}>
+            <div className={cls.discountsInfoLeft}>
+              <img
+                src={import.meta.env.VITE_API_URL + "/" + discounts[0]?.img}
+                alt={discounts[0]?.name}
+              />
+            </div>
+            <div className={cls.discountsInfoRight}>
+              {discounts.length !== 0 &&
+                discounts?.map(
+                  (item, index) =>
+                    index != 0 && (
+                      <div
+                        key={item.name + item.id}
+                        className={cls.discountsInfoItem}
+                      >
+                        <img
+                          src={import.meta.env.VITE_API_URL + "/" + item.img}
+                          alt={item.name}
+                        />
+                      </div>
+                    )
+                )}
+            </div>
+          </div>
+          <Link to={"/discounts"}>
+            <MyButton>Все акции</MyButton>
+          </Link>
         </div>
-        <div className={cls.discountsInfoRight}>
-          {discounts.map(
-            (item, index) =>
-              index != 0 && (
-                <div
-                  key={item.name + item.id}
-                  className={cls.discountsInfoItem}
-                >
-                  <img
-                    src={import.meta.env.VITE_API_URL + "/" + item.img}
-                    alt={item.name}
-                  />
-                </div>
-              )
-          )}
-        </div>
-      </div>
-      <Link to={"/discounts"}>
-        <MyButton>Все акции</MyButton>
-      </Link>
-    </div>
+      )}
+    </>
   );
 };
 
