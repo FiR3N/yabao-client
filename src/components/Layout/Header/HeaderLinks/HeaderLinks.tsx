@@ -9,13 +9,13 @@ import cls from "../Header.module.scss";
 import userImg from "../../../../assets/img/user.png";
 import { BasketActions } from "../../../../hooks/useActions";
 import { BeatLoader } from "react-spinners";
+import HeaderBasketLink from "./HeaderBasketLink/HeaderBasketLink";
 interface HeaderLinksProps {}
 
 const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
   const { user, isAuth, loading } = useTypeSelector(
     (state) => state.userReducer
   );
-  const { basketItemsCount } = useTypeSelector((state) => state.basketReducer);
 
   const { getBasketItem } = BasketActions();
 
@@ -81,9 +81,7 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
               Войти
             </p>
           )}
-          <Link to="/cart">
-            <MyButton>Корзина | {basketItemsCount}</MyButton>
-          </Link>
+          <HeaderBasketLink />
         </div>
       </div>
     </>

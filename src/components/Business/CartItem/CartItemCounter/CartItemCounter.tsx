@@ -15,6 +15,7 @@ const CartItemCounter: FC<CartItemCounterProps> = ({ count, id }) => {
     changeCountBasketItem(id, changedCount + 1);
   };
   const counterSubHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (changedCount === 1) return;
     setChangedCount((prev) => prev - 1);
     changeCountBasketItem(id, changedCount - 1);
   };

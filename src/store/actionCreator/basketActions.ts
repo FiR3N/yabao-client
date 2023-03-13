@@ -90,7 +90,7 @@ export const changeCountBasketItem = (id: number, count: number) => {
       const item = await BasketService.updateCountBasketItem(id, count);
       dispatch({
         type: BasketActionTypes.UPDATE_BASKET_ITEM,
-        payload: item as unknown as IBasket,
+        payload: { id, count },
       });
     } catch (e: any) {
       dispatch({

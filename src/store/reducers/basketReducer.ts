@@ -1,4 +1,5 @@
 import IBasket from "../../models/IBasket";
+import { IProduct } from "../../models/IProduct";
 import {
   BasketAction,
   BasketActionTypes,
@@ -23,6 +24,14 @@ export default function basketReducer(
         ...state,
         basket: action.payload,
         basketItemsCount: action.payload.length,
+        totalPrice: action.payload.reduce(
+          (total: number, item) =>
+            (total +=
+              (item.ProductModel.isDiscount
+                ? Number(item.ProductModel.discountedPrice)
+                : Number(item.ProductModel.price)) * item.count),
+          0
+        ),
         loading: false,
         error: false,
       };
@@ -37,22 +46,44 @@ export default function basketReducer(
         basketItemsCount: state.basketItemsCount + 1,
       };
     case BasketActionTypes.DELETE_BASKET_ITEM:
+      const currentBasket = state.basket.filter(
+        (item) => item.id !== action.payload
+      );
       return {
         ...state,
-        basket: state.basket.filter((item) => item.id !== action.payload),
+        basket: currentBasket,
         basketItemsCount: state.basketItemsCount - 1,
+        totalPrice: currentBasket.reduce(
+          (total: number, item) =>
+            (total +=
+              (item.ProductModel.isDiscount
+                ? Number(item.ProductModel.discountedPrice)
+                : Number(item.ProductModel.price)) * item.count),
+          0
+        ),
       };
     case BasketActionTypes.DELETE_ALL_BASKET_ITEM:
       return { ...state, basket: [], basketItemsCount: 0 };
     case BasketActionTypes.UPDATE_BASKET_ITEM:
       const { id, count } = action.payload;
       const updatedItems = state.basket.map((item) => {
-        if (item.id == id) {
+        if (item.id === id) {
           item.count = count;
         }
         return item;
       });
-      return { ...state, basket: updatedItems };
+      return {
+        ...state,
+        basket: updatedItems,
+        totalPrice: updatedItems.reduce(
+          (total: number, item) =>
+            (total +=
+              (item.ProductModel.isDiscount
+                ? Number(item.ProductModel.discountedPrice)
+                : Number(item.ProductModel.price)) * item.count),
+          0
+        ),
+      };
 
     default:
       return state;

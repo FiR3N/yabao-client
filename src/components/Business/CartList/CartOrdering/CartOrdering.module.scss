@@ -1,0 +1,40 @@
+.cartOrdering {
+  &Title {
+    margin-bottom: 20px;
+  }
+  &Content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &Promo {
+    display: flex;
+    flex: 0 1 50%;
+    button {
+      border-radius: 0 8px 8px 0;
+    }
+    input {
+      border-radius: 8px 0 0 8px;
+    }
+  }
+
+  &Total {
+    p {
+      margin-bottom: 20px;
+    }
+  }
+  .totalPrice {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 71%;
+    color: #0e0c0d;
+    span {
+      margin-left: 9px;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 100%;
+      color: #ff2e65;
+    }
+  }
+}

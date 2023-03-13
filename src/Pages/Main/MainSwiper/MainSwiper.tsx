@@ -20,6 +20,7 @@ const MainSwiper: FC<MainSwiperProps> = () => {
       navigation
       loop={false}
       spaceBetween={30}
+      speed={1000}
       breakpoints={{
         768: {
           simulateTouch: false,
@@ -28,9 +29,9 @@ const MainSwiper: FC<MainSwiperProps> = () => {
       className={cls.swiper}
     >
       <div className="swiper-wrapper">
-        <SwiperSlide>
+        <SwiperSlide className={cls.swiperItem}>
           <div className={cls.swiperItem}>
-            <img src={swiperImg2} alt="swiper-img-2" />
+            <img src={swiperImg1} alt="swiper-img-1" />
           </div>
         </SwiperSlide>
         <SwiperSlide className={cls.swiperItem}>
@@ -40,7 +41,7 @@ const MainSwiper: FC<MainSwiperProps> = () => {
         </SwiperSlide>
         <SwiperSlide className={cls.swiperItem}>
           <div className={cls.swiperItem}>
-            <img src={swiperImg3} alt="swiper-img-3" />
+            <img src={swiperImg1} alt="swiper-img-1" />
           </div>
         </SwiperSlide>
       </div>

@@ -7,18 +7,26 @@ import { useTypeSelector } from "../../../hooks/useTypeSelector";
 import CartItem from "../CartItem/CartItem";
 import MyInput from "../../UI/MyInput/MyInput";
 import MyButton from "../../UI/MyButton/MyButton";
+import CartOrdering from "./CartOrdering/CartOrdering";
 interface CartListProps {}
 
 const CartList: FC<CartListProps> = () => {
   const { user } = useTypeSelector((state) => state.userReducer);
-  const { basket, loading, error } = useTypeSelector(
+  const { basket, loading, error, totalPrice } = useTypeSelector(
     (state) => state.basketReducer
   );
   const { getBasketItem } = BasketActions();
-
   useEffect(() => {
     getBasketItem(user?.id);
   }, [user]);
+
+  if (error) {
+    return (
+      <div>
+        <h2>Ошибка загрузки корзины!</h2>
+      </div>
+    );
+  }
 
   return (
     <div className={cls.cartList}>
@@ -30,24 +38,12 @@ const CartList: FC<CartListProps> = () => {
         aria-label="Loader spinner"
         data-testid="loader"
       />
-      {basket.length > 0 ? (
+      {!loading && basket.length > 0 ? (
         <>
           {basket.map((item) => (
             <CartItem key={item.id} basketItem={item} />
           ))}
-          <div className={cls.cartListOrdering}>
-            <h3>Промокод</h3>
-            <div className={cls.cartListOrderingPromo}>
-              <MyInput placeholder="Введите промокод" />
-              <MyButton>Применить</MyButton>
-            </div>
-            <div className={cls.cartListOrderingTotal}>
-              <p className={cls.totalPrice}>
-                Сумма заказа: <span>{1000} ₽</span>
-              </p>
-              <MyButton>Оформить заказ</MyButton>
-            </div>
-          </div>
+          <CartOrdering totalPrice={totalPrice} />
         </>
       ) : (
         <p className={cls.cartListEmpty}>Ваша корзина пуста!</p>

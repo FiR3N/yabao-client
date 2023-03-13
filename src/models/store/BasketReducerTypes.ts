@@ -3,6 +3,7 @@ import IBasket from "../IBasket";
 export interface BasketState {
   basket: IBasket[];
   basketItemsCount: number;
+  totalPrice: number;
   loading: boolean;
   error: boolean | string;
 }
@@ -38,7 +39,7 @@ export interface AddBasketItemAction {
 
 export interface UpdateBasketItemAction {
   type: BasketActionTypes.UPDATE_BASKET_ITEM;
-  payload: IBasket;
+  payload: UpdateBasketItemActionPayload;
 }
 
 export interface DeleteAllBasketItemsAction {
@@ -56,4 +57,10 @@ export interface BasketLoadingAction {
 export interface BasketErrorAction {
   type: BasketActionTypes.BASKET_ERROR;
   payload: boolean | string;
+}
+
+//
+interface UpdateBasketItemActionPayload {
+  id: number;
+  count: number;
 }
