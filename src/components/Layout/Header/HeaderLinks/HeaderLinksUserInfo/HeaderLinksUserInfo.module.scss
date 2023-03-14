@@ -1,0 +1,29 @@
+@import "../../../../../assets/styles/default_variables.scss";
+.headerLinksUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  .buttonsLoader {
+    font-size: 1rem;
+  }
+  .buttonsLogin {
+    cursor: pointer;
+  }
+  .userBlock {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    color: $color-1;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    &Name {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+}

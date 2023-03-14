@@ -18,11 +18,11 @@ export default function userReducer(
 ): UserState {
   switch (action.type) {
     case UserActionTypes.USER_LOGIN:
-      return { ...state, user: action.payload, error: false };
+      return { ...state, user: action.payload, error: false, isAuth: true };
     case UserActionTypes.USER_LOADING:
       return { ...state, loading: true };
     case UserActionTypes.USER_REG:
-      return { ...state, user: action.payload, error: false };
+      return { ...state, user: action.payload, error: false, isAuth: true };
     case UserActionTypes.USER_CHECK:
       return {
         ...state,

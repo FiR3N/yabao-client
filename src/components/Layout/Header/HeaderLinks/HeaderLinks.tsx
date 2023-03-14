@@ -10,14 +10,15 @@ import userImg from "../../../../assets/img/user.png";
 import { BasketActions } from "../../../../hooks/useActions";
 import { BeatLoader } from "react-spinners";
 import HeaderBasketLink from "./HeaderBasketLink/HeaderBasketLink";
+import HeaderLinksUserInfo from "./HeaderLinksUserInfo/HeaderLinksUserInfo";
 interface HeaderLinksProps {}
 
 const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
-  const { user, isAuth, loading } = useTypeSelector(
-    (state) => state.userReducer
-  );
+  // const { user, isAuth, loading } = useTypeSelector(
+  //   (state) => state.userReducer
+  // );
 
-  const { getBasketItem } = BasketActions();
+  // const { getBasketItem } = BasketActions();
 
   const [types, setTypes] = useState<IType[]>([]);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
@@ -26,11 +27,11 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
     TypeService.getTypes().then((data) => setTypes(data));
   }, []);
 
-  useEffect(() => {
-    if (Object.keys(user).length !== 0) {
-      getBasketItem(user?.id);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (Object.keys(user).length !== 0) {
+  //     getBasketItem(user?.id);
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     if (isLoginModalOpen) {
@@ -57,7 +58,7 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
           </li>
         </ul>
         <div className={cls.buttons}>
-          {loading ? (
+          {/* {loading ? (
             <BeatLoader
               className={cls.buttonsLoader}
               color={"#ff2e65"}
@@ -80,7 +81,8 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
             >
               Войти
             </p>
-          )}
+          )} */}
+          <HeaderLinksUserInfo setState={setIsLoginModalOpen} />
           <HeaderBasketLink />
         </div>
       </div>

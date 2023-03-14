@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import MainLayout from "../../components/UI/MainLayout/MainLayout";
 import cls from "./Contact.module.scss";
 import ContactForm from "./ContactForm/ContactForm";
@@ -6,6 +6,9 @@ import ContactForm from "./ContactForm/ContactForm";
 interface ContactProps {}
 
 const Contact: FC<ContactProps> = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <MainLayout title="Контакты">
       <div className={cls.contact}>

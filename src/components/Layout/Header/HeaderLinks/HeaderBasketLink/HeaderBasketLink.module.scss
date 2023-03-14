@@ -1,2 +1,30 @@
 .headerBasketLink {
+  .buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    &Loader {
+      font-size: 1rem;
+    }
+    &Login {
+      cursor: pointer;
+    }
+    .userBlock {
+      display: flex;
+      gap: 10px;
+      cursor: pointer;
+      color: $color-1;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+      &Name {
+        display: flex;
+        flex-direction: column;
+        span {
+          font-weight: 600;
+        }
+      }
+    }
+  }
 }

@@ -47,10 +47,17 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
           <p className={cls.productItemName}>{product.name}</p>
           <p className={`${cls.productItemDesc} gray-text`}>{product.desc}</p>
           <div className={cls.productItemPriceWithButton}>
-            <p>
-              от {product.isDiscount ? product.discountedPrice : product.price}{" "}
-              ₽
-            </p>
+            <div className={cls.productItemPrice}>
+              <p className={cls.productItemPriceDiscount}>
+                от{" "}
+                {product.isDiscount ? product.discountedPrice : product.price} ₽
+              </p>
+              {product.isDiscount && (
+                <p className={cls.productItemPriceWithoutDiscount}>
+                  {product.price} ₽
+                </p>
+              )}
+            </div>
             {isProductInBasket ? (
               <MyButton onClick={buttonHandler}>В корзине ✓</MyButton>
             ) : (

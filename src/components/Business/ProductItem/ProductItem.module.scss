@@ -2,9 +2,6 @@
 
 .productItem {
   flex: 0 0 calc(25% - 20px);
-  // flex: 1 0 256px;
-  // max-width: 256px;
-  // min-width: 256px;
   margin-bottom: 20px;
   img {
     width: 100%;
@@ -36,13 +33,22 @@
       padding: 4px 23px;
     }
   }
-  @media screen and (max-width: 59.875em) {
+  &Price {
+    display: flex;
+    flex-direction: column;
+    &WithoutDiscount {
+      font-size: 1.2rem;
+      text-decoration: line-through;
+      color: rgba($color-1, 0.5);
+    }
+  }
+  @media screen and (max-width: 63.625em) {
     flex: 0 0 calc(33.33% - 20px);
     img {
       height: 200px;
     }
   }
-  @media screen and (max-width: 45.375em) {
+  @media screen and (max-width: 48.067em) {
     flex: 0 0 calc(50% - 20px);
     img {
       height: 200px;
