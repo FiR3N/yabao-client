@@ -11,31 +11,31 @@ const HeaderBasketLink: FC<HeaderBasketLinkProps> = () => {
   const { basketItemsCount, loading } = useTypeSelector(
     (state) => state.basketReducer
   );
-  const { user } = useTypeSelector((state) => state.userReducer);
+  const { user, isAuth } = useTypeSelector((state) => state.userReducer);
 
-  const { getBasketItem } = BasketActions();
+  const { getBasketItems } = BasketActions();
 
   useEffect(() => {
     if (Object.keys(user).length !== 0) {
-      getBasketItem(user?.id);
+      getBasketItems(user?.id);
     }
   }, [user]);
-
   return (
     <>
-      {loading ? (
-        <BeatLoader
-          color={"#ff2e65"}
-          loading={loading}
-          size={30}
-          aria-label="Loader spinner"
-          data-testid="loader"
-        />
-      ) : (
-        <Link to="/cart">
-          <MyButton>Корзина | {basketItemsCount}</MyButton>
-        </Link>
-      )}
+      {isAuth &&
+        (loading ? (
+          <BeatLoader
+            color={"#ff2e65"}
+            loading={loading}
+            size={30}
+            aria-label="Loader spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <Link to="/cart">
+            <MyButton>Корзина | {basketItemsCount}</MyButton>
+          </Link>
+        ))}
     </>
   );
 };

@@ -49,7 +49,6 @@ const AuthModal: FC<AuthModalProps> = ({ setActive }) => {
 
   useEffect(() => {
     if (isSubmitSuccessful && !error) {
-      // window.location.reload();
       setActive(false);
     }
   }, [isSubmitSuccessful, error]);

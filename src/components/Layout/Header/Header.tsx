@@ -4,6 +4,7 @@ import HeaderConfirmEmail from "./HeaderConfirmEmail/HeaderConfirmEmail";
 import HeaderInfo from "./HeaderInfo/HeaderInfo";
 import HeaderLinks from "./HeaderLinks/HeaderLinks";
 
+//need fix popup
 const Header: FC = () => {
   return (
     <header className={cls.header}>

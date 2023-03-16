@@ -7,16 +7,31 @@ import {
 } from "../../models/store/BasketReducerTypes";
 import BasketService from "../../services/BasketService";
 
-export const getBasketItem = (basketId: number) => {
+export const getBasketItems = (basketId: number) => {
   return async (dispatch: Dispatch<BasketAction>) => {
     try {
       dispatch({
         type: BasketActionTypes.BASKET_LOADING,
       });
-      const basketItems = await BasketService.getBasketItem(basketId);
+      const basketItems = await BasketService.getBasketItems(basketId);
       dispatch({
         type: BasketActionTypes.GET_ALL_BASKET_ITEMS,
         payload: basketItems.data,
+      });
+    } catch (e: any) {
+      dispatch({
+        type: BasketActionTypes.BASKET_ERROR,
+        payload: e.response?.data?.message,
+      });
+    }
+  };
+};
+
+export const deleteAllBasketItems = () => {
+  return async (dispatch: Dispatch<BasketAction>) => {
+    try {
+      dispatch({
+        type: BasketActionTypes.DELETE_ALL_BASKET_ITEM,
       });
     } catch (e: any) {
       dispatch({

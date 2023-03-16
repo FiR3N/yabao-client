@@ -14,7 +14,7 @@ export default class BasketService {
       count,
     });
   }
-  static async getBasketItem(basketId: number) {
+  static async getBasketItems(basketId: number) {
     return $api.get(`/basket-items/${basketId}`);
   }
   static async deleteBasketItem(id: number) {

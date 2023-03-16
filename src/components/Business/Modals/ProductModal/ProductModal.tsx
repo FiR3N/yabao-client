@@ -27,8 +27,6 @@ const ProductModal: FC<ProductModalProps> = ({ setActive, product }) => {
     }
   }, [typeAdditions]);
 
-  console.log(typeAdditionLvlCount);
-
   return (
     <MyModal closeMethod={setActive}>
       <div className={cls.productModal}>

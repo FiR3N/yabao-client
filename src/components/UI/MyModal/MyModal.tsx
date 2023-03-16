@@ -1,11 +1,13 @@
 import React, { FC, SetStateAction } from "react";
 import cls from "./MyModal.module.scss";
+import ReactDOM from "react-dom";
 interface MyModalProps {
   children: React.ReactNode;
   closeMethod: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const MyModal: FC<MyModalProps> = ({ children, closeMethod }) => {
+  const modalRoot = document.getElementById("modal-root") as Element;
   const closeOnBgHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget != e.target) return;
     closeMethod(false);
@@ -13,7 +15,7 @@ const MyModal: FC<MyModalProps> = ({ children, closeMethod }) => {
   const closeOnButHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     closeMethod(false);
   };
-  return (
+  return ReactDOM.createPortal(
     <div className={cls.myModal} onClick={closeOnBgHandler}>
       <div className={cls.myModalContent}>
         <div className={cls.myModalCloseBut} onClick={closeOnButHandler}>
@@ -22,7 +24,8 @@ const MyModal: FC<MyModalProps> = ({ children, closeMethod }) => {
         </div>
         {children}
       </div>
-    </div>
+    </div>,
+    modalRoot
   );
 };
 

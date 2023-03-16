@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { BasketActions } from "../../../hooks/useActions";
 import { useTypeSelector } from "../../../hooks/useTypeSelector";
 import { IProduct } from "../../../models/IProduct";
 import MyButton from "../../UI/MyButton/MyButton";
 import ProductModal from "../Modals/ProductModal/ProductModal";
 import cls from "./ProductItem.module.scss";
+import ProductItemCartButton from "./ProductItemCartButton/ProductItemCartButton";
 
 interface ProductItemProps {
   product: IProduct;
@@ -12,29 +13,28 @@ interface ProductItemProps {
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
-  const [isProductInBasket, setIsProductInBasket] = useState(false);
+  // const [isProductInBasket, setIsProductInBasket] = useState(false);
 
-  const { user } = useTypeSelector((state) => state.userReducer);
-  const { basket } = useTypeSelector((state) => state.basketReducer);
+  // const { user } = useTypeSelector((state) => state.userReducer);
+  // const { basket } = useTypeSelector((state) => state.basketReducer);
 
-  const { addToBasket, deleteBasketItemByProductId } = BasketActions();
+  // const { addToBasket, deleteBasketItemByProductId } = BasketActions();
 
-  const buttonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (isProductInBasket) {
-      deleteBasketItemByProductId(product.id, user.id);
-      setIsProductInBasket(false);
-    } else {
-      e.preventDefault();
-      addToBasket(user.id, product.id);
-      setIsProductInBasket(true);
-    }
-  };
+  // const buttonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   if (isProductInBasket) {
+  //     deleteBasketItemByProductId(product.id, user.id);
+  //     setIsProductInBasket(false);
+  //   } else {
+  //     addToBasket(user.id, product.id);
+  //     setIsProductInBasket(true);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (basket.some((item) => item.productId === product.id)) {
-      setIsProductInBasket((prev) => (prev = true));
-    }
-  }, [basket]);
+  // useEffect(() => {
+  //   if (basket.some((item) => item.productId === product.id)) {
+  //     setIsProductInBasket((prev) => (prev = true));
+  //   }
+  // }, [basket]);
 
   return (
     <>
@@ -58,11 +58,12 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
                 </p>
               )}
             </div>
-            {isProductInBasket ? (
+            <ProductItemCartButton productId={product.id} />
+            {/* {isProductInBasket ? (
               <MyButton onClick={buttonHandler}>В корзине ✓</MyButton>
             ) : (
               <MyButton onClick={buttonHandler}>В корзину</MyButton>
-            )}
+            )} */}
           </div>
         </div>
       )}

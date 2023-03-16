@@ -1,0 +1,54 @@
+.informationModal {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  min-width: 250px;
+  min-height: 70px;
+  border-radius: 8px;
+  &Text {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    font-weight: 700;
+  }
+  &CloseBut {
+    position: absolute;
+    top: 5px;
+    right: -25px;
+    cursor: pointer;
+    .bar:nth-child(1) {
+      transform: translate(0px, 5px) rotate(45deg);
+    }
+    .bar:nth-child(2) {
+      transform: translate(0, -3px) rotate(-45deg);
+    }
+  }
+  .bar {
+    display: block;
+    width: 20px;
+    height: 3px;
+    margin: 6px auto;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+}
+.success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #d4edda;
+  .bar {
+    background-color: #155724;
+  }
+  .informationModalCloseBut {
+    &:hover {
+      .bar {
+        background-color: #20a43f;
+      }
+    }
+  }
+}
+.error {
+  color: white;
+  background-color: #b90e0a;
+  border-color: #990f02;
+}

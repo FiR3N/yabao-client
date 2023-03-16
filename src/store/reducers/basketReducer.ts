@@ -52,7 +52,7 @@ export default function basketReducer(
       return {
         ...state,
         basket: currentBasket,
-        basketItemsCount: state.basketItemsCount - 1,
+        basketItemsCount: currentBasket.length,
         totalPrice: currentBasket.reduce(
           (total: number, item) =>
             (total +=

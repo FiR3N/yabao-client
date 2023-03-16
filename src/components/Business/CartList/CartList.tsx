@@ -5,19 +5,16 @@ import cls from "./CartList.module.scss";
 import { BasketActions } from "../../../hooks/useActions";
 import { useTypeSelector } from "../../../hooks/useTypeSelector";
 import CartItem from "../CartItem/CartItem";
-import MyInput from "../../UI/MyInput/MyInput";
-import MyButton from "../../UI/MyButton/MyButton";
 import CartOrdering from "./CartOrdering/CartOrdering";
-interface CartListProps {}
 
-const CartList: FC<CartListProps> = () => {
+const CartList: FC = () => {
   const { user } = useTypeSelector((state) => state.userReducer);
   const { basket, loading, error, totalPrice } = useTypeSelector(
     (state) => state.basketReducer
   );
-  const { getBasketItem } = BasketActions();
+  const { getBasketItems } = BasketActions();
   useEffect(() => {
-    getBasketItem(user?.id);
+    getBasketItems(user?.id);
   }, [user]);
 
   if (error) {
