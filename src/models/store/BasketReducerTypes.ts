@@ -6,6 +6,7 @@ export interface BasketState {
   totalPrice: number;
   loading: boolean;
   error: boolean | string;
+  orderSuccess: boolean;
 }
 
 export enum BasketActionTypes {
@@ -16,6 +17,7 @@ export enum BasketActionTypes {
   DELETE_BASKET_ITEM = "DELETE_BASKET_ITEM",
   DELETE_ALL_BASKET_ITEM = "DELETE_ALL_BASKET_ITEMS",
   UPDATE_BASKET_ITEM = "UPDATE_BASKET_ITEM",
+  SET_ORDER_SUCCESS = "SET_ORDER_SUCCESS",
 }
 
 export type BasketAction =
@@ -25,7 +27,8 @@ export type BasketAction =
   | DeleteAllBasketItemsAction
   | DeleteBasketItemAction
   | BasketLoadingAction
-  | BasketErrorAction;
+  | BasketErrorAction
+  | SetOrderSuccesAction;
 
 export interface GetAllBasketItemsAction {
   type: BasketActionTypes.GET_ALL_BASKET_ITEMS;
@@ -57,6 +60,11 @@ export interface BasketLoadingAction {
 export interface BasketErrorAction {
   type: BasketActionTypes.BASKET_ERROR;
   payload: boolean | string;
+}
+
+export interface SetOrderSuccesAction {
+  type: BasketActionTypes.SET_ORDER_SUCCESS;
+  payload: boolean;
 }
 
 //

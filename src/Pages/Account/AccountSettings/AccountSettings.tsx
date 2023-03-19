@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormItem from "../../../components/UI/FormItem/FormItem";
 import MainLayout from "../../../components/UI/MainLayout/MainLayout";
@@ -6,8 +6,6 @@ import MyButton from "../../../components/UI/MyButton/MyButton";
 import { UserActions } from "../../../hooks/useActions";
 import { useTypeSelector } from "../../../hooks/useTypeSelector";
 import { IAccount } from "../../../models/validators/IAccount";
-import UserService from "../../../services/UserService";
-import cls from "./AccountSettings.module.scss";
 
 interface AccountSettingsProps {}
 

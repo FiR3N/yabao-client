@@ -6,8 +6,6 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import swiperImg1 from "../../../assets/img/swiper-1.png";
-import swiperImg2 from "../../../assets/img/swiper-2.png";
-import swiperImg3 from "../../../assets/img/swiper-3.png";
 
 interface MainSwiperProps {}
 

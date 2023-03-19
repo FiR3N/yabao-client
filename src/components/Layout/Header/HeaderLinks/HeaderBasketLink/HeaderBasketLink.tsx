@@ -20,6 +20,7 @@ const HeaderBasketLink: FC<HeaderBasketLinkProps> = () => {
       getBasketItems(user?.id);
     }
   }, [user]);
+
   return (
     <>
       {isAuth &&

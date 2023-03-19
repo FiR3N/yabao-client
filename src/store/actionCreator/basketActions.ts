@@ -76,7 +76,7 @@ export const deleteBasketItemByProductId = (
     } catch (e: any) {
       dispatch({
         type: BasketActionTypes.BASKET_ERROR,
-        payload: e.response?.data?.message,
+        payload: e.message,
       });
     }
   };
@@ -88,7 +88,7 @@ export const addToBasket = (basketId: number, productId: number) => {
       const item = await BasketService.addToBasket(basketId, productId);
       dispatch({
         type: BasketActionTypes.ADD_ITEM_TO_BASKET,
-        payload: item as unknown as IBasket,
+        payload: item.data as unknown as IBasket,
       });
     } catch (e: any) {
       dispatch({
@@ -106,6 +106,22 @@ export const changeCountBasketItem = (id: number, count: number) => {
       dispatch({
         type: BasketActionTypes.UPDATE_BASKET_ITEM,
         payload: { id, count },
+      });
+    } catch (e: any) {
+      dispatch({
+        type: BasketActionTypes.BASKET_ERROR,
+        payload: e.response?.data?.message,
+      });
+    }
+  };
+};
+
+export const setOrderSuccess = (bool: boolean) => {
+  return async (dispatch: Dispatch<BasketAction>) => {
+    try {
+      dispatch({
+        type: BasketActionTypes.SET_ORDER_SUCCESS,
+        payload: bool,
       });
     } catch (e: any) {
       dispatch({

@@ -46,7 +46,6 @@ const CartItem: FC<CartItemProps> = ({ basketItem }) => {
             <div className={cls.cartItemTrashBox} onClick={deleteHandler}>
               <TrashBox />
             </div>
-            {/* <img className={cls.cartItemTrashBox} src={trashBox} alt="trash" /> */}
           </div>
         )}
     </>

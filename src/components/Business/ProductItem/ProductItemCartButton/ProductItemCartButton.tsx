@@ -13,9 +13,7 @@ const ProductItemCartButton: FC<ProductItemCartButtonProps> = ({
   const [isProductInBasket, setIsProductInBasket] = useState(false);
 
   const { user } = useTypeSelector((state) => state.userReducer);
-  const { basket, basketItemsCount } = useTypeSelector(
-    (state) => state.basketReducer
-  );
+  const { basket } = useTypeSelector((state) => state.basketReducer);
   const { addToBasket, deleteBasketItemByProductId } = BasketActions();
 
   useEffect(() => {

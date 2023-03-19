@@ -22,7 +22,7 @@ const OrderModal: FC<OrderModalProps> = ({ setActive }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm<IOrder>({ mode: "onChange" });
   const onSubmit: SubmitHandler<IOrder> = async (data, e) => {
     e?.preventDefault();
@@ -32,9 +32,6 @@ const OrderModal: FC<OrderModalProps> = ({ setActive }) => {
 
   return (
     <>
-      {isSubmitSuccessful && (
-        <InformationModal status={0}>Заказ успешно отправлен </InformationModal>
-      )}
       <div className={cls.orderModal}>
         <MyModal closeMethod={setActive}>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +55,9 @@ const OrderModal: FC<OrderModalProps> = ({ setActive }) => {
 
             <FormItem
               labelName="Адрес:"
-              register={register("address")}
+              register={register("address", {
+                required: "Почта не может быть пустой",
+              })}
               errors={errors.address}
               placeholder="Введите куда отправить заказ..."
               type="text"

@@ -11,7 +11,6 @@ interface CartOrderingProps {
 
 const CartOrdering: FC<CartOrderingProps> = ({ totalPrice }) => {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
-
   return (
     <>
       {isOrderFormOpen && <OrderModal setActive={setIsOrderFormOpen} />}

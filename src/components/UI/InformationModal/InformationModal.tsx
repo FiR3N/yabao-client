@@ -1,10 +1,11 @@
-import { Dispatch, FC, ReactNode, SetStateAction } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import cls from "./InformationModal.module.scss";
 import ReactDOM from "react-dom";
+import { useTypeSelector } from "../../../hooks/useTypeSelector";
+import { BasketActions } from "../../../hooks/useActions";
 interface InformationModalProps {
   children: ReactNode;
   status: InformationModalStatus;
-  // closeMethod: Dispatch<SetStateAction<boolean>>;
 }
 
 enum InformationModalStatus {
@@ -12,25 +13,30 @@ enum InformationModalStatus {
   error,
 }
 
-const InformationModal: FC<InformationModalProps> = ({
-  children,
-  status,
-  // closeMethod,
-}) => {
+const InformationModal: FC<InformationModalProps> = ({ children, status }) => {
   const modalRoot = document.getElementById("modal-root") as Element;
+  const { orderSuccess } = useTypeSelector((state) => state.basketReducer);
+  const { setOrderSuccess } = BasketActions();
+  useEffect(() => {
+    orderSuccess &&
+      setTimeout(() => {
+        setOrderSuccess(false);
+      }, 3000);
+  }, []);
+
   return ReactDOM.createPortal(
     <div
       className={`${status == 0 ? cls.success : cls.error} ${
         cls.informationModal
       }`}
     >
-      <div
+      {/* <div
         className={cls.informationModalCloseBut}
         // onClick={() => closeMethod(false)}
       >
         <span className={cls.bar}></span>
         <span className={cls.bar}></span>
-      </div>
+      </div> */}
       <p className={cls.informationModalText}>{children}</p>
     </div>,
     modalRoot

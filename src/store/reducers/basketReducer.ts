@@ -12,6 +12,7 @@ const initialState: BasketState = {
   totalPrice: 0,
   loading: false,
   error: false,
+  orderSuccess: false,
 };
 
 export default function basketReducer(
@@ -24,14 +25,17 @@ export default function basketReducer(
         ...state,
         basket: action.payload,
         basketItemsCount: action.payload.length,
-        totalPrice: action.payload.reduce(
-          (total: number, item) =>
-            (total +=
-              (item.ProductModel.isDiscount
-                ? Number(item.ProductModel.discountedPrice)
-                : Number(item.ProductModel.price)) * item.count),
-          0
-        ),
+        totalPrice:
+          action.payload.length > 0
+            ? action.payload.reduce(
+                (total: number, item) =>
+                  (total +=
+                    (item.ProductModel.isDiscount
+                      ? Number(item.ProductModel.discountedPrice)
+                      : Number(item.ProductModel.price)) * item.count),
+                0
+              )
+            : 0,
         loading: false,
         error: false,
       };
@@ -39,12 +43,14 @@ export default function basketReducer(
       return { ...state, loading: true };
     case BasketActionTypes.BASKET_ERROR:
       return { ...state, error: action.payload, loading: false };
-    case BasketActionTypes.ADD_ITEM_TO_BASKET:
+    case BasketActionTypes.ADD_ITEM_TO_BASKET: {
+      const updatedItems = [...state.basket, action.payload];
       return {
         ...state,
-        basket: [...state.basket, action.payload],
-        basketItemsCount: state.basketItemsCount + 1,
+        basket: updatedItems,
+        basketItemsCount: updatedItems.length,
       };
+    }
     case BasketActionTypes.DELETE_BASKET_ITEM:
       const currentBasket = state.basket.filter(
         (item) => item.id !== action.payload
@@ -53,17 +59,20 @@ export default function basketReducer(
         ...state,
         basket: currentBasket,
         basketItemsCount: currentBasket.length,
-        totalPrice: currentBasket.reduce(
-          (total: number, item) =>
-            (total +=
-              (item.ProductModel.isDiscount
-                ? Number(item.ProductModel.discountedPrice)
-                : Number(item.ProductModel.price)) * item.count),
-          0
-        ),
+        totalPrice:
+          currentBasket.length > 0
+            ? currentBasket.reduce(
+                (total: number, item) =>
+                  (total +=
+                    (item.ProductModel?.isDiscount
+                      ? Number(item.ProductModel?.discountedPrice)
+                      : Number(item.ProductModel?.price)) * item.count),
+                0
+              )
+            : 0,
       };
     case BasketActionTypes.DELETE_ALL_BASKET_ITEM:
-      return { ...state, basket: [], basketItemsCount: 0 };
+      return { ...state, basket: [], basketItemsCount: 0, orderSuccess: true };
     case BasketActionTypes.UPDATE_BASKET_ITEM:
       const { id, count } = action.payload;
       const updatedItems = state.basket.map((item) => {
@@ -84,7 +93,8 @@ export default function basketReducer(
           0
         ),
       };
-
+    case BasketActionTypes.SET_ORDER_SUCCESS:
+      return { ...state, orderSuccess: action.payload };
     default:
       return state;
   }

@@ -18,41 +18,7 @@ const Contact: FC<ContactProps> = () => {
           height="420"
         />
         <h3 className={cls.contactFormTitle}>Свяжитесь с нами</h3>
-        {/* {successSent && (
-          <div className="success-info">Сообщение успешно отправлено!</div>
-        )} */}
-        {/* <form className={cls.contactForm}>
-          {error && <p className="error-text">Неверный email!</p>}
-          <div>
-            <MyLabel>Почта</MyLabel>
-            <MyInput
-              onChange={(e) => setEmail(e.currentTarget.value)}
-              value={email}
-              type="text"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-              placeholder="Почтовый адрес..."
-            />
-          </div>
-          <div>
-            <MyLabel>Тема</MyLabel>
-            <MyInput
-              onChange={(e) => setTheme(e.currentTarget.value)}
-              value={theme}
-              type="text"
-              placeholder="Тема сообщения..."
-              pattern="[a-z0-9._%+-]+"
-              maxLength={100}
-            />
-          </div>
-          <MyLabel>Текст</MyLabel>
-          <MyTextArea
-            onChange={(e) => setText(e.currentTarget.value)}
-            value={text}
-            placeholder="Текст сообщения..."
-            maxLength={700}
-          />
-          <MyButton onClick={sendMessage}>Отправить</MyButton>
-        </form> */}
+
         <ContactForm />
       </div>
     </MainLayout>

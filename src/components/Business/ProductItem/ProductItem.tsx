@@ -59,11 +59,6 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
               )}
             </div>
             <ProductItemCartButton productId={product.id} />
-            {/* {isProductInBasket ? (
-              <MyButton onClick={buttonHandler}>В корзине ✓</MyButton>
-            ) : (
-              <MyButton onClick={buttonHandler}>В корзину</MyButton>
-            )} */}
           </div>
         </div>
       )}
