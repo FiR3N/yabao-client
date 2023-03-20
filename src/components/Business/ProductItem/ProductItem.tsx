@@ -13,28 +13,6 @@ interface ProductItemProps {
 
 const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
-  // const [isProductInBasket, setIsProductInBasket] = useState(false);
-
-  // const { user } = useTypeSelector((state) => state.userReducer);
-  // const { basket } = useTypeSelector((state) => state.basketReducer);
-
-  // const { addToBasket, deleteBasketItemByProductId } = BasketActions();
-
-  // const buttonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   if (isProductInBasket) {
-  //     deleteBasketItemByProductId(product.id, user.id);
-  //     setIsProductInBasket(false);
-  //   } else {
-  //     addToBasket(user.id, product.id);
-  //     setIsProductInBasket(true);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (basket.some((item) => item.productId === product.id)) {
-  //     setIsProductInBasket((prev) => (prev = true));
-  //   }
-  // }, [basket]);
 
   return (
     <>

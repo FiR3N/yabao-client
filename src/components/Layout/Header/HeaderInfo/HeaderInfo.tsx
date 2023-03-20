@@ -21,10 +21,10 @@ const HeaderInfo: FC<HeaderInfoProps> = memo(() => {
   }, []);
 
   useEffect(() => {
-    if (isLoginModalOpen) {
+    if (isLoginModalOpen || isHambActive) {
       document.body.classList.add("_noscroll");
     } else document.body.classList.remove("_noscroll");
-  }, [isLoginModalOpen]);
+  }, [isLoginModalOpen, isHambActive]);
 
   return (
     <div className={cls.headerInfo}>

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import cls from "./Footer.module.scss";
 import lapwa from "../../../assets/img/footer_lapwa.svg";
 import masterCard from "../../../assets/img/master-card.png";

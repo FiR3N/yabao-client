@@ -26,6 +26,7 @@
     }
   }
   &Price {
+    flex: 0 1 15%;
     font-weight: 700;
     font-size: 1.5rem;
     line-height: 100%;
@@ -41,6 +42,20 @@
         color: $color-3;
         fill: $color-3;
       }
+    }
+  }
+  @media screen and (max-width: 48em) {
+    flex-wrap: wrap;
+    &Img {
+      width: 80px;
+      height: 80px;
+    }
+    &Price {
+      flex: 1 0 25%;
+      text-align: left;
+    }
+    &Text {
+      flex: 1 1 auto;
     }
   }
 }

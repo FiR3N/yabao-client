@@ -40,4 +40,22 @@
       color: #ff2e65;
     }
   }
+  @media screen and (max-width: 48em) {
+    &Content {
+      flex-direction: column;
+    }
+    &Promo {
+      flex: 1 1 100%;
+      margin-bottom: 20px;
+    }
+    &Total {
+      flex: 1 1 100%;
+    }
+    .totalPrice {
+      font-size: 1.2rem;
+      span {
+        font-size: 1.5rem;
+      }
+    }
+  }
 }

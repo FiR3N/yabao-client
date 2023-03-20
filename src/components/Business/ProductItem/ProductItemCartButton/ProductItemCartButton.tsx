@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { BasketActions } from "../../../../hooks/useActions";
 import { useTypeSelector } from "../../../../hooks/useTypeSelector";
 import MyButton from "../../../UI/MyButton/MyButton";
+import AuthModal from "../../Modals/AuthModal/AuthModal";
 
 interface ProductItemCartButtonProps {
   productId: number;
@@ -10,9 +11,10 @@ interface ProductItemCartButtonProps {
 const ProductItemCartButton: FC<ProductItemCartButtonProps> = ({
   productId,
 }) => {
-  const [isProductInBasket, setIsProductInBasket] = useState(false);
+  const [isProductInBasket, setIsProductInBasket] = useState<boolean>(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
-  const { user } = useTypeSelector((state) => state.userReducer);
+  const { user, isAuth } = useTypeSelector((state) => state.userReducer);
   const { basket } = useTypeSelector((state) => state.basketReducer);
   const { addToBasket, deleteBasketItemByProductId } = BasketActions();
 
@@ -23,16 +25,22 @@ const ProductItemCartButton: FC<ProductItemCartButtonProps> = ({
   }, [basket]);
 
   const buttonHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (isProductInBasket) {
-      deleteBasketItemByProductId(productId, user.id);
-      setIsProductInBasket(false);
+    if (isAuth) {
+      if (isProductInBasket) {
+        deleteBasketItemByProductId(productId, user.id);
+        setIsProductInBasket(false);
+      } else {
+        addToBasket(user.id, productId);
+        setIsProductInBasket(true);
+      }
     } else {
-      addToBasket(user.id, productId);
-      setIsProductInBasket(true);
+      setIsLoginModalOpen(true);
     }
   };
+
   return (
     <>
+      {isLoginModalOpen && <AuthModal setActive={setIsLoginModalOpen} />}
       {isProductInBasket ? (
         <MyButton onClick={buttonHandler}>В корзине ✓</MyButton>
       ) : (
