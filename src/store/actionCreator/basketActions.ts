@@ -1,11 +1,13 @@
 import { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
 import IBasket from "../../models/IBasket";
+import IPromo from "../../models/IPromo";
 import {
   BasketAction,
   BasketActionTypes,
 } from "../../models/store/BasketReducerTypes";
 import BasketService from "../../services/BasketService";
+import PromoService from "../../services/PromoService";
 
 export const getBasketItems = (basketId: number) => {
   return async (dispatch: Dispatch<BasketAction>) => {
@@ -115,6 +117,48 @@ export const changeCountBasketItem = (id: number, count: number) => {
     }
   };
 };
+
+export const changeTotalPrice = (promo: IPromo) => {
+  return async (dispatch: Dispatch<BasketAction>) => {
+    try {
+      dispatch({
+        type: BasketActionTypes.CHANGE_TOTALPRICE,
+        payload: promo,
+      });
+    } catch (e: any) {
+      dispatch({
+        type: BasketActionTypes.BASKET_ERROR,
+        payload: e.response?.data?.message,
+      });
+    }
+  };
+};
+//FIX
+// export const checkPromo = (name: string) => {
+//   return async (dispatch: Dispatch<BasketAction>) => {
+//     try {
+//       const promo = await PromoService.getPromoByName(name).then(
+//         (data) => data.data
+//       );
+//       console.log(promo);
+//       if (promo) {
+//         dispatch({
+//           type: BasketActionTypes.CHECK_PROMO,
+//           payload: promo,
+//         });
+//         dispatch({
+//           type: BasketActionTypes.CHANGE_TOTALPRICE,
+//           payload: promo.rebate,
+//         });
+//       }
+//     } catch (e: any) {
+//       dispatch({
+//         type: BasketActionTypes.BASKET_ERROR,
+//         payload: e.response?.data?.message,
+//       });
+//     }
+//   };
+// };
 
 export const setOrderSuccess = (bool: boolean) => {
   return async (dispatch: Dispatch<BasketAction>) => {

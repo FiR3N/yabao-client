@@ -2,14 +2,16 @@
   position: fixed;
   top: 20px;
   right: 30px;
-  min-width: 250px;
-  min-height: 70px;
+  width: 250px;
+  height: 70px;
   border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &Text {
-    width: 100%;
-    height: 100%;
     padding: 5px;
     font-weight: 700;
+    font-size: 1.5rem;
   }
   &CloseBut {
     position: absolute;
@@ -30,6 +32,13 @@
     margin: 6px auto;
     z-index: 1;
     transition: all 0.3s ease;
+  }
+  @media screen and (max-width: 48em) {
+    min-height: 35px;
+    min-width: 150px;
+    &Text {
+      font-size: 1rem;
+    }
   }
 }
 .success {

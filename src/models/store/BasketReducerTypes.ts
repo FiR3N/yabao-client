@@ -1,4 +1,5 @@
 import IBasket from "../IBasket";
+import IPromo from "../IPromo";
 
 export interface BasketState {
   basket: IBasket[];
@@ -7,6 +8,7 @@ export interface BasketState {
   loading: boolean;
   error: boolean | string;
   orderSuccess: boolean;
+  promo: IPromo;
 }
 
 export enum BasketActionTypes {
@@ -18,6 +20,8 @@ export enum BasketActionTypes {
   DELETE_ALL_BASKET_ITEM = "DELETE_ALL_BASKET_ITEMS",
   UPDATE_BASKET_ITEM = "UPDATE_BASKET_ITEM",
   SET_ORDER_SUCCESS = "SET_ORDER_SUCCESS",
+  CHANGE_TOTALPRICE = "CHANGE_TOTALPRICE",
+  CHECK_PROMO = "CHECK_PROMO",
 }
 
 export type BasketAction =
@@ -28,7 +32,9 @@ export type BasketAction =
   | DeleteBasketItemAction
   | BasketLoadingAction
   | BasketErrorAction
-  | SetOrderSuccesAction;
+  | SetOrderSuccesAction
+  | ChangeTotalPriceAction;
+// | CheckPromoAction;
 
 export interface GetAllBasketItemsAction {
   type: BasketActionTypes.GET_ALL_BASKET_ITEMS;
@@ -66,6 +72,16 @@ export interface SetOrderSuccesAction {
   type: BasketActionTypes.SET_ORDER_SUCCESS;
   payload: boolean;
 }
+
+export interface ChangeTotalPriceAction {
+  type: BasketActionTypes.CHANGE_TOTALPRICE;
+  payload: IPromo;
+}
+//FIX
+// export interface CheckPromoAction {
+//   type: BasketActionTypes.CHECK_PROMO;
+//   payload: IPromo;
+// }
 
 //
 interface UpdateBasketItemActionPayload {

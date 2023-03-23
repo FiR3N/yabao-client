@@ -9,13 +9,15 @@
   }
 
   &Promo {
-    display: flex;
     flex: 0 1 50%;
     button {
       border-radius: 0 50px 50px 0;
     }
     input {
       border-radius: 50px 0 0 50px;
+    }
+    &Item {
+      display: flex;
     }
   }
 

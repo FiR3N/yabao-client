@@ -26,6 +26,8 @@ const CartList: FC = () => {
     );
   }
 
+  console.log(totalPrice);
+
   return (
     <>
       {orderSuccess && (

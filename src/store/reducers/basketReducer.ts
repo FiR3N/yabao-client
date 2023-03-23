@@ -1,5 +1,6 @@
 import IBasket from "../../models/IBasket";
 import { IProduct } from "../../models/IProduct";
+import IPromo from "../../models/IPromo";
 import {
   BasketAction,
   BasketActionTypes,
@@ -9,6 +10,8 @@ import {
 const initialState: BasketState = {
   basket: [],
   basketItemsCount: 0,
+  // FIX
+  promo: {} as IPromo,
   totalPrice: 0,
   loading: false,
   error: false,
@@ -95,6 +98,13 @@ export default function basketReducer(
       };
     case BasketActionTypes.SET_ORDER_SUCCESS:
       return { ...state, orderSuccess: action.payload };
+    case BasketActionTypes.CHANGE_TOTALPRICE:
+      console.log(action.payload);
+      return {
+        ...state,
+        promo: action.payload,
+        totalPrice: state.totalPrice - state.totalPrice * action.payload.rebate,
+      };
     default:
       return state;
   }

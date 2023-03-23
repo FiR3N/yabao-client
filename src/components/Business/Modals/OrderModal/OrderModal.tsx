@@ -18,6 +18,8 @@ interface OrderModalProps {
 
 const OrderModal: FC<OrderModalProps> = ({ setActive }) => {
   const { user } = useTypeSelector((state) => state.userReducer);
+  const { promo } = useTypeSelector((state) => state.basketReducer);
+
   const { deleteAllBasketItems } = BasketActions();
   const {
     register,
@@ -26,7 +28,7 @@ const OrderModal: FC<OrderModalProps> = ({ setActive }) => {
   } = useForm<IOrder>({ mode: "onChange" });
   const onSubmit: SubmitHandler<IOrder> = async (data, e) => {
     e?.preventDefault();
-    await OrderService.sendOrder(user.id, data.address);
+    await OrderService.sendOrder(user.id, data.address, promo.id);
     deleteAllBasketItems();
   };
 
