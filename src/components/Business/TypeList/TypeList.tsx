@@ -37,7 +37,7 @@ const TypeList: FC<TypeListProps> = () => {
 
   return (
     <div className={cls.typesOfProducts}>
-      {types.length &&
+      {types.length ? (
         types.map((type) => {
           return (
             <div key={type.name} id={type.name} className={cls.typeOfproducts}>
@@ -45,7 +45,10 @@ const TypeList: FC<TypeListProps> = () => {
               <ProductList type={type} />
             </div>
           );
-        })}
+        })
+      ) : (
+        <p>Ошибка загрузки данных!</p>
+      )}
     </div>
   );
 };
