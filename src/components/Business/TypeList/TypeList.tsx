@@ -4,13 +4,15 @@ import { IType } from "../../../models/IType";
 import { TypeService } from "../../../services/AllProductService";
 import ProductList from "../ProductList/ProductList";
 import cls from "./TypeList.module.scss";
+import { BeatLoader } from "react-spinners";
 
 interface TypeListProps {}
 
 const TypeList: FC<TypeListProps> = () => {
   const params = useParams();
   const [types, setTypes] = useState<IType[]>([]);
-
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const scrollToBlock = (name = "") => {
     setTimeout(() => {
       const typesNames = types.map((type) => type.name);
@@ -24,9 +26,22 @@ const TypeList: FC<TypeListProps> = () => {
       }
     }, 500);
   };
+  const fetchTypes = async () => {
+    setIsLoading(true);
+    setError(null);
 
+    try {
+      const data = await TypeService.getTypes();
+      setTypes(data);
+    } catch (err) {
+      console.error("Failed to fetch types:", err);
+      setError("Не удалось загрузить данные. Пожалуйста, попробуйте позже.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   useEffect(() => {
-    TypeService.getTypes().then((data) => setTypes(data));
+    fetchTypes();
   }, []);
 
   useEffect(() => {
@@ -37,17 +52,32 @@ const TypeList: FC<TypeListProps> = () => {
 
   return (
     <div className={cls.typesOfProducts}>
-      {types.length ? (
-        types.map((type) => {
-          return (
-            <div key={type.name} id={type.name} className={cls.typeOfproducts}>
-              <h2 className={cls.title}>{type.name}</h2>
-              <ProductList type={type} />
-            </div>
-          );
-        })
+      {isLoading ? (
+        <div className={cls.typesOfProductsLoader}>
+          <BeatLoader
+            className={cls.buttonsLoader}
+            color={"#ff2e65"}
+            loading={isLoading}
+            size={30}
+            aria-label="Loader spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : error ? (
+        <h2 className="error-text">{error}</h2>
+      ) : types.length === 0 ? (
+        <h2 className="error-text">Нет доступных категорий</h2>
       ) : (
-        <h2 className="error-text">Ошибка загрузки данных!</h2>
+        types.map((type) => (
+          <div
+            key={type.id || type.name}
+            id={type.name}
+            className={cls.typeOfproducts}
+          >
+            <h2 className={cls.title}>{type.name}</h2>
+            <ProductList type={type} />
+          </div>
+        ))
       )}
     </div>
   );

@@ -1,4 +1,10 @@
 .typesOfProducts {
+  &Loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
   .typeOfproducts {
     .title {
       margin-bottom: 25px;
