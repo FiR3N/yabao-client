@@ -14,19 +14,14 @@ const CartList: FC = () => {
     (state) => state.basketReducer
   );
   const { getBasketItems } = BasketActions();
+
   useEffect(() => {
     getBasketItems(user?.id);
   }, [user]);
 
   if (error) {
-    return (
-      <div>
-        <h2>Ошибка загрузки корзины!</h2>
-      </div>
-    );
+    return <h2 className="error-text">Ошибка загрузки корзины!</h2>;
   }
-
-  console.log(totalPrice);
 
   return (
     <>

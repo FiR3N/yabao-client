@@ -35,7 +35,6 @@ const CartOrdering: FC<CartOrderingProps> = ({ totalPrice }) => {
       setError(true);
     }
   };
-
   return (
     <>
       {isOrderFormOpen && <OrderModal setActive={setIsOrderFormOpen} />}
@@ -48,7 +47,7 @@ const CartOrdering: FC<CartOrderingProps> = ({ totalPrice }) => {
             )}
             {isPromoActive && (
               <div className="success-info">
-                Промокод активирован (Скидка - {promo.rebate * 100}%)
+                Промокод активирован (Скидка - {promo?.rebate * 100}%)
               </div>
             )}
             <div className={cls.cartOrderingPromoItem}>

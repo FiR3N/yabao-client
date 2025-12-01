@@ -1,5 +1,5 @@
+@use "./assets/styles/default_variables.scss" as *;
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap");
-@import "./assets/styles/default_variables.scss";
 
 /*nullstyle---------------------------*/
 * {
@@ -224,4 +224,12 @@ body {
 
 .main {
   flex: 1 1 auto;
+}
+
+.error-text {
+  text-align: center;
+}
+.error-message {
+  color: red;
+  margin-bottom: 5px;
 }

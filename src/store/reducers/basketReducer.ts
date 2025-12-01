@@ -10,7 +10,6 @@ import {
 const initialState: BasketState = {
   basket: [],
   basketItemsCount: 0,
-  // FIX
   promo: {} as IPromo,
   totalPrice: 0,
   loading: false,
@@ -99,7 +98,6 @@ export default function basketReducer(
     case BasketActionTypes.SET_ORDER_SUCCESS:
       return { ...state, orderSuccess: action.payload };
     case BasketActionTypes.CHANGE_TOTALPRICE:
-      console.log(action.payload);
       return {
         ...state,
         promo: action.payload,

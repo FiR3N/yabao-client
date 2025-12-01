@@ -72,10 +72,10 @@ export const checkIsAuth = () => {
         payload: user.data,
       });
     } catch (e: any) {
-      // dispatch({
-      //   type: UserActionTypes.USER_ERROR,
-      //   payload: e.response?.data?.message,
-      // });
+      dispatch({
+        type: UserActionTypes.USER_ERROR,
+        payload: e.response?.data?.message,
+      });
       // console.log(e.response?.data?.message);
     }
   };
@@ -98,7 +98,7 @@ export const userUpdate = (
     } catch (e: any) {
       dispatch({
         type: UserActionTypes.USER_ERROR,
-        payload: e.response?.data?.message,
+        payload: "Ошибка получения данных",
       });
     }
   };
@@ -125,6 +125,14 @@ export const setAuthError = (message: string) => {
     dispatch({
       type: UserActionTypes.USER_ERROR,
       payload: message,
+    });
+  };
+};
+
+export const clearUserError = () => {
+  return (dispatch: Dispatch<UserAction>) => {
+    dispatch({
+      type: UserActionTypes.USER_CLEAR_ERROR,
     });
   };
 };

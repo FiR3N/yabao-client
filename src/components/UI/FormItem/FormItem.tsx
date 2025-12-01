@@ -25,7 +25,7 @@ const FormItem: FC<FormItemProps> = ({
     >
       {labelName}
       <input className={cls.formItemInput} {...register} {...props} />
-      <p className="error-text">{errors?.message}</p>
+      <p>{errors?.message}</p>
     </label>
   );
 };

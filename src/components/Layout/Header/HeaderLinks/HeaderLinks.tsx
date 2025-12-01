@@ -16,11 +16,12 @@ const HeaderLinks: FC<HeaderLinksProps> = memo(() => {
     TypeService.getTypes().then((data) => setTypes(data));
   }, []);
 
-  useEffect(() => {
-    if (isLoginModalOpen) {
-      document.body.classList.add("_noscroll");
-    } else document.body.classList.remove("_noscroll");
-  }, [isLoginModalOpen]);
+  // useEffect(() => {
+  //   if (isLoginModalOpen) {
+  //     document.body.classList.add("_noscroll");
+  //   } else document.body.classList.remove("_noscroll");
+  // }, [isLoginModalOpen]);
+
   return (
     <>
       {isLoginModalOpen && <AuthModal setActive={setIsLoginModalOpen} />}

@@ -16,6 +16,7 @@ export enum UserActionTypes {
   USER_ERROR = "USER_ERROR",
   USER_UPDATE = "USER_UPDATE",
   USER_LOADING = "USER_LOADING",
+  USER_CLEAR_ERROR = "USER_CLEAR_ERROR",
 }
 
 export type UserAction =
@@ -25,7 +26,8 @@ export type UserAction =
   | UserCheckAction
   | UserErrorAction
   | UserUpdateAction
-  | UserLoadingAction;
+  | UserLoadingAction
+  | ClearErrorAction;
 
 export interface UserLoginAction {
   type: UserActionTypes.USER_LOGIN;
@@ -52,4 +54,7 @@ export interface UserUpdateAction {
 }
 export interface UserLoadingAction {
   type: UserActionTypes.USER_LOADING;
+}
+export interface ClearErrorAction {
+  type: UserActionTypes.USER_CLEAR_ERROR;
 }

@@ -14,7 +14,7 @@ interface AuthModalProps {
 }
 
 const AuthModal: FC<AuthModalProps> = ({ setActive }) => {
-  const { login, reg } = UserActions();
+  const { login, reg, clearUserError } = UserActions();
   const {
     register,
     handleSubmit,
@@ -47,6 +47,11 @@ const AuthModal: FC<AuthModalProps> = ({ setActive }) => {
     return value === password || "Пароли должны совпадать";
   };
 
+  const handleClose = () => {
+    clearUserError();
+    setActive(false);
+  };
+
   useEffect(() => {
     if (isSubmitSuccessful && !error) {
       setActive(false);
@@ -54,12 +59,12 @@ const AuthModal: FC<AuthModalProps> = ({ setActive }) => {
   }, [isSubmitSuccessful, error]);
 
   return (
-    <MyModal closeMethod={setActive}>
+    <MyModal closeMethod={handleClose}>
       <form className={cls.authModal} onSubmit={handleSubmit(onSubmit)}>
         <h2 className={cls.authModalTitle}>
           {isLogin ? "Вход на сайт" : "Регистрация"}
         </h2>
-        {error && <p className="error-text">{error}</p>}
+        {error && <p className="error-message">{error}</p>}
         <FormItem
           labelName="Почта"
           register={register("email", {

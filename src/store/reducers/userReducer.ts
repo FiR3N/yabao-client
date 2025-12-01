@@ -32,11 +32,13 @@ export default function userReducer(
         loading: false,
       };
     case UserActionTypes.USER_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, loading: false, error: action.payload };
     case UserActionTypes.USER_UPDATE:
       return { ...state, user: action.payload };
     case UserActionTypes.USER_LOGOUT:
       return { ...state, user: {} as IUser, isAuth: false };
+    case UserActionTypes.USER_CLEAR_ERROR:
+      return { ...state, error: false };
     default:
       return state;
   }

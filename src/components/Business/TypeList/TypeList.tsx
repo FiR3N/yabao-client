@@ -47,7 +47,7 @@ const TypeList: FC<TypeListProps> = () => {
           );
         })
       ) : (
-        <p>Ошибка загрузки данных!</p>
+        <h2 className="error-text">Ошибка загрузки данных!</h2>
       )}
     </div>
   );

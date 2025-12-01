@@ -10,9 +10,11 @@ interface HeaderLinksUserInfoProps {
 }
 
 const HeaderLinksUserInfo: FC<HeaderLinksUserInfoProps> = ({ setState }) => {
-  const { user, isAuth, loading } = useTypeSelector(
+  const { user, isAuth, loading, error } = useTypeSelector(
     (state) => state.userReducer
   );
+
+  console.log(error);
 
   return (
     <div className={cls.headerLinksUserInfo}>
